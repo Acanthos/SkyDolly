@@ -55,7 +55,7 @@ namespace {
     constexpr double LandingPitch = -3.0;
     // Max banking angle [degrees]
     // https://www.pprune.org/tech-log/377244-a320-321-ap-bank-angle-limits.html
-    constexpr double MaxBankAngle = 25;
+    constexpr double MaxBankAngle = 45;
 }
 
 struct FlightAugmentationPrivate
@@ -155,7 +155,7 @@ void FlightAugmentation::augmentAttitudeAndVelocity(Aircraft &aircraft) noexcept
                             const double headingChange = SkyMath::headingChange(position[i - 1].trueHeading, startPositionData.trueHeading);
                             // We go into maximum bank angle of 30 degrees with a heading change of 45 degrees
                             // SimConnect: negative values are a "right" turn, positive values a left turn
-                            startPositionData.bank = SkyMath::bankAngle(headingChange, 45.0, ::MaxBankAngle);
+                            startPositionData.bank = SkyMath::bankAngle(headingChange, 5.0, ::MaxBankAngle);
                         } else {
                             // First point, zero bank angle
                             startPositionData.bank = 0.0;
